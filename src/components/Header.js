@@ -1,4 +1,6 @@
 import React from "react";
+import { Link, Route } from 'react-router-dom';
+import SignUp from './SignUp';
 
 const Header = () => (
   <nav className="navbar navbar-light">
@@ -19,10 +21,12 @@ const Header = () => (
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="">Sign up</a>
+          <Link className="nav-link" to="/sign-up">Sign up</Link>
         </li>
       </ul>
     </div>
+    {/*<Route path="/" component={App} exact={true}/>*/}
+    <Route path="/sign-up" component={SignUp} exact={true}/>
   </nav>
 );
 

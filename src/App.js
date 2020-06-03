@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
+import { Route } from 'react-router-dom';
+import Main from './components/Main';
+import SignUp from './components/SignUp';
 
 const App = () => {
 
@@ -15,14 +15,12 @@ const App = () => {
       },
     });
     const content = await response.json();
-    console.log(content);
   })();
 
   return (
     <>
-      <Header/>
-      <Home/>
-      <Footer/>
+      <Route path="/" component={Main} exact={true}/>
+      <Route path="/sign-up" component={SignUp} exact={true}/>
     </>
   );
 };

@@ -6,7 +6,7 @@ Simply point your [API requests](https://github.com/gothinkster/realworld/tree/m
 
 ### Routing Guidelines
 
-- Home page (URL: /#/ )
+- Main page (URL: /#/ )
     - List of tags
     - List of articles pulled from either Feed, Global, or by Tag
     - Pagination for list of articles
@@ -41,7 +41,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
   - [Header](#header)
   - [Footer](#footer)
 - [Pages](#pages)
-  - [Home](#home)
+  - [Main](#home)
   - [Login/Register](#loginregister)
   - [Profile](#profile)
   - [Settings](#settings)
@@ -74,7 +74,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
         <ul class="nav navbar-nav pull-xs-right">
           <li class="nav-item">
             <!-- Add "active" class when you're on that page" -->
-            <a class="nav-link active" href="">Home</a>
+            <a class="nav-link active" href="">Main</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">
@@ -113,7 +113,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 
 ## Pages
 
-### Home
+### Main
 ```html
 <div class="home-page">
 
