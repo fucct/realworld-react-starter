@@ -1,8 +1,8 @@
 import React, { useReducer, useState } from 'react';
-import SignUpForm from './SignUpForm';
-import ErrorMessages from './ErrorMessages';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ErrorMessages from './ErrorMessages';
+import SignInForm from './SignInForm';
 
 
 function reducer(state, action) {
@@ -12,14 +12,14 @@ function reducer(state, action) {
   };
 }
 
-const SignUp = (props) => {
+const SignIn = (props) => {
+  console.log("wtf?");
   const [user, dispatch] = useReducer(reducer, {
-    username: "",
     email: "",
     password: "",
   });
 
-  const { username, email, password } = user;
+  const { email, password } = user;
 
   const onChange = e => {
     dispatch(e.target);
@@ -27,21 +27,19 @@ const SignUp = (props) => {
 
   const [error, setError] = useState({
       email: undefined,
-      username: undefined,
       password: undefined,
     }
   );
 
   const onClick = e => {
     e.preventDefault();
-    axios.post("https://conduit.productionready.io/api/users", { user: user })
+    axios.post("https://conduit.productionready.io/api/users/login", { user: user })
     .then(() => props.history.push("/"))
     .catch(error => {
       if (error.response) {
         const errorList = error.response.data.errors;
         const errors = {
           email: errorList.email,
-          username: errorList.username,
           password: errorList.password,
         };
         setError(errors);
@@ -57,10 +55,10 @@ const SignUp = (props) => {
           <div className="col-md-6 offset-md-3 col-xs-12">
             <h1 className="text-xs-center">Sign up</h1>
             <p className="text-xs-center">
-              <Link to="/sign-in">Have an account?</Link>
+              <Link to="/sign-up">Don't You Have an account?</Link>
             </p>
             <ErrorMessages error={error}/>
-            <SignUpForm username={username} email={email} password={password} onChange={onChange}
+            <SignInForm email={email} password={password} onChange={onChange}
                         onClick={onClick}/>
           </div>
         </div>
@@ -69,4 +67,4 @@ const SignUp = (props) => {
   );
 }
 
-export default SignUp;
+export default SignIn;

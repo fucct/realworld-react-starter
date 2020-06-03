@@ -42,7 +42,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
   - [Footer](#footer)
 - [Pages](#pages)
   - [Main](#home)
-  - [Login/Register](#loginregister)
+  - [SignIn/Register](#loginregister)
   - [Profile](#profile)
   - [Settings](#settings)
   - [Create/Edit Article](#createedit-article)
@@ -200,7 +200,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 </div>
 ```
 
-### Login/Register
+### SignIn/Register
 
 ```html
 <div class="auth-page">
