@@ -13,7 +13,6 @@ function reducer(state, action) {
 }
 
 const SignIn = (props) => {
-  console.log("wtf?");
   const [user, dispatch] = useReducer(reducer, {
     email: "",
     password: "",
@@ -34,7 +33,11 @@ const SignIn = (props) => {
   const onClick = e => {
     e.preventDefault();
     axios.post("https://conduit.productionready.io/api/users/login", { user: user })
-    .then(() => props.history.push("/"))
+    .then(response => {
+      console.log(response.data);
+      localStorage.setItem("token", response.data.user.token);
+      props.history.push("/");
+    })
     .catch(error => {
       if (error.response) {
         const errorList = error.response.data.errors;
@@ -53,7 +56,7 @@ const SignIn = (props) => {
       <div className="container page">
         <div className="row">
           <div className="col-md-6 offset-md-3 col-xs-12">
-            <h1 className="text-xs-center">Sign up</h1>
+            <h1 className="text-xs-center">Sign in</h1>
             <p className="text-xs-center">
               <Link to="/sign-up">Don't You Have an account?</Link>
             </p>
