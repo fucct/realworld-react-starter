@@ -24,7 +24,7 @@ const Home = ({ articles }) => {
                   </li>
                 </ul>
               </div>
-              {articles.map(article => ArticleTemplate(article))}
+              {articles.map((article, index) => ArticleTemplate(article, index))}
               <div className="col-md-3">
                 <div className="sidebar">
                   <p>Popular Tags</p>

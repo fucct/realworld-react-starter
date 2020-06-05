@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ArticleTemplate = article => {
-  console.log(article);
+const ArticleTemplate = (article, index) => {
   return (
-    <div className="article-preview">
+    <div className="article-preview" key={index}>
       <div className="article-meta">
-        <Link to={"/profile/" + article.author.username}><img src={article.author.image}/></Link>
+        <Link to={"/profiles/" + article.author.username}><img src={article.author.image}/></Link>
         <div className="info">
-          <Link to={"/profile/" + article.author.username}
+          <Link to={"/profiles/" + article.author.username}
                 className="author">{article.author.username}</Link>
           <span className="date">{article.createdAt}</span>
         </div>

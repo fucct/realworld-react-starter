@@ -1,6 +1,6 @@
 import React from "react";
 
-const Profile = ({ image, username, bio, email }) => {
+const Profile = ({ username, bio, image, following }) => {
 
 
   return (

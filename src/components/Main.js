@@ -4,28 +4,21 @@ import ShowHome from './ShowHome';
 import Footer from './Footer';
 
 function Main(props) {
-  const [isToken, setIsToken] = useState(false);
+  const [token, setToken] = useState(null);
+
   useEffect(() => {
-    const token = localStorage.getItem("token")
-    if (token) {
-      setIsToken(true);
-    } else {
-      setIsToken(false);
-    }
+    setToken(localStorage.getItem("token"));
   }, []);
 
   const onClickSignOut = (e) => {
     e.preventDefault();
-    console.log(isToken);
-    if (isToken) {
-      localStorage.clear();
-      setIsToken(false);
-    }
+    localStorage.clear();
+    setToken(null);
   }
 
   return (
     <>
-      <Header isToken={isToken} onClickSignOut={onClickSignOut}/>
+      <Header token={token} onClickSignOut={onClickSignOut}/>
       <ShowHome/>
       <Footer/>
     </>

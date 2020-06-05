@@ -2,7 +2,7 @@ import React from "react";
 import { Link, NavLink } from 'react-router-dom';
 import SignButton from './SignButton';
 
-const Header = ({ isToken, onClickSignOut }) => {
+const Header = ({ token, onClickSignOut }) => {
 
   return (
     <nav className="navbar navbar-light">
@@ -22,7 +22,7 @@ const Header = ({ isToken, onClickSignOut }) => {
               <i className="ion-gear-a"/>&nbsp;Settings
             </Link>
           </li>
-          <SignButton token={isToken} onClickSingOut={onClickSignOut}/>
+          <SignButton token={token} onClickSingOut={onClickSignOut}/>
         </ul>
       </div>
     </nav>
