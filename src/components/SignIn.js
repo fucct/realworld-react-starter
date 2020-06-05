@@ -49,7 +49,6 @@ const SignIn = (props) => {
     })
   }
 
-
   return (
     <div className="auth-page">
       <div className="container page">

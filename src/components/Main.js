@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
-import Home from './Home';
+import ShowHome from './ShowHome';
 import Footer from './Footer';
 
 function Main(props) {
@@ -26,7 +26,7 @@ function Main(props) {
   return (
     <>
       <Header isToken={isToken} onClickSignOut={onClickSignOut}/>
-      <Home/>
+      <ShowHome/>
       <Footer/>
     </>
   );
