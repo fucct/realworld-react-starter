@@ -1,17 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, NavLink } from 'react-router-dom';
 import SignButton from './SignButton';
 
-const Header = () => {
-  const [token, setToken] = useState(false);
-
-  if (localStorage.getItem("token") && !token) {
-    setToken(true);
-  }
-
-  if (!localStorage.getItem("token") && token) {
-    setToken(false);
-  }
+const Header = ({ isToken, onClickSignOut }) => {
 
   return (
     <nav className="navbar navbar-light">
@@ -23,16 +14,15 @@ const Header = () => {
           </li>
           <li className="nav-item">
             <a className="nav-link" href="">
-              <i className="ion-compose"></i>&nbsp;New Post
+              <i className="ion-compose"/>&nbsp;New Post
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="">
-              <i className="ion-gear-a"></i>&nbsp;Settings
-            </a>
+            <Link className="nav-link" to="settings">
+              <i className="ion-gear-a"/>&nbsp;Settings
+            </Link>
           </li>
-          <SignButton token={token}/>
-
+          <SignButton token={isToken} onClickSingOut={onClickSignOut}/>
         </ul>
       </div>
     </nav>

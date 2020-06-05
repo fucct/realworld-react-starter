@@ -34,7 +34,6 @@ const SignIn = (props) => {
     e.preventDefault();
     axios.post("https://conduit.productionready.io/api/users/login", { user: user })
     .then(response => {
-      console.log(response.data);
       localStorage.setItem("token", response.data.user.token);
       props.history.push("/");
     })

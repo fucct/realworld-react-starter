@@ -4,6 +4,8 @@ import Main from './components/Main';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import SignOut from './components/SignOut';
+import Settings from './pages/Settings';
+import ShowProfile from './components/ShowProfile';
 
 const App = () => {
 
@@ -25,6 +27,8 @@ const App = () => {
       <Route path="/sign-up" component={SignUp} exact={true}/>
       <Route path="/sign-in" component={SignIn} exact={true}/>
       <Route path="/sign-out" component={SignOut} exact={true}/>
+      <Route path="/profile" component={ShowProfile} exact={true}/>
+      <Route path="/settings" component={Settings} exact={true}/>
     </>
   );
 };
