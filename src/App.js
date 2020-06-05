@@ -6,6 +6,8 @@ import SignIn from './components/SignIn';
 import SignOut from './components/SignOut';
 import Settings from './pages/Settings';
 import ShowProfile from './components/ShowProfile';
+import ArticleInput from './components/ArticleInput';
+import ReadArticle from './components/ReadArticle';
 
 const App = () => {
 
@@ -29,6 +31,8 @@ const App = () => {
       <Route path="/sign-out" component={SignOut} exact={true}/>
       <Route path="/profiles/:username" component={ShowProfile}/>
       <Route path="/settings" component={Settings} exact={true}/>
+      <Route path="/write" component={ArticleInput} exact={true}/>
+      <Route path="/articles/:slug" component={ReadArticle}/>
     </>
   );
 };

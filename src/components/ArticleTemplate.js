@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const ArticleTemplate = (article, index) => {
   return (
-    <div className="article-preview" key={index}>
+    <div className="article-preview" key={index} id={article.slug}>
       <div className="article-meta">
         <Link to={"/profiles/" + article.author.username}><img src={article.author.image}/></Link>
         <div className="info">
@@ -15,11 +15,11 @@ const ArticleTemplate = (article, index) => {
           <i className="ion-heart"/> {article.favoritesCount}
         </button>
       </div>
-      <a href="" className="preview-link">
+      <Link to={"/articles/" + article.slug} className="preview-link">
         <h1>{article.title}</h1>
         <p>{article.body}</p>
         <span>Read more...</span>
-      </a>
+      </Link>
     </div>
   );
 }

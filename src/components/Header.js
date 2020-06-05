@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import SignButton from './SignButton';
 
 const Header = ({ token, onClickSignOut }) => {
@@ -7,20 +7,20 @@ const Header = ({ token, onClickSignOut }) => {
   return (
     <nav className="navbar navbar-light">
       <div className="container">
-        <Link className="navbar-brand" to="/">conduit</Link>
+        <NavLink className="navbar-brand" to="/">conduit</NavLink>
         <ul className="nav navbar-nav pull-xs-right">
           <li className="nav-item">
             <NavLink className="nav-link active" to="/">Home</NavLink>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="">
+            <NavLink className="nav-link" to="/write">
               <i className="ion-compose"/>&nbsp;New Post
-            </a>
+            </NavLink>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="settings">
+            <NavLink className="nav-link" to="settings">
               <i className="ion-gear-a"/>&nbsp;Settings
-            </Link>
+            </NavLink>
           </li>
           <SignButton token={token} onClickSingOut={onClickSignOut}/>
         </ul>
