@@ -1,14 +1,12 @@
 import React from 'react';
-import Main from './Main';
+import { Redirect } from 'react-router-dom';
 
 function SignOut(props) {
   localStorage.clear();
 
   return (
-    <>
-      <Main/>
-    </>
-  );
+    <Redirect to="/"/>
+  )
 }
 
 export default SignOut;

@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from 'react';
 import Editor from '../pages/Editor';
 import axios from 'axios';
+import validateAccess from './Utils';
 
 function reducer(state, action) {
   return {
@@ -10,6 +11,8 @@ function reducer(state, action) {
 }
 
 function ArticleInput(props) {
+  validateAccess(props);
+  
   const [article, dispatch] = useReducer(reducer, {
     title: null,
     description: null,

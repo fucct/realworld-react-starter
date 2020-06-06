@@ -10,16 +10,10 @@ function Main(props) {
     setToken(localStorage.getItem("token"));
   }, []);
 
-  const onClickSignOut = (e) => {
-    e.preventDefault();
-    localStorage.clear();
-    setToken(null);
-  }
-
   return (
     <>
-      <Header token={token} onClickSignOut={onClickSignOut}/>
-      <ShowHome/>
+      <Header token={token}/>
+      <ShowHome token={token}/>
       <Footer/>
     </>
   );

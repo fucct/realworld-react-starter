@@ -8,6 +8,7 @@ import Settings from './pages/Settings';
 import ShowProfile from './components/ShowProfile';
 import ArticleInput from './components/ArticleInput';
 import ReadArticle from './components/ReadArticle';
+import SampleArticle from './pages/SampleArticle';
 
 const App = () => {
 
@@ -33,6 +34,7 @@ const App = () => {
       <Route path="/settings" component={Settings} exact={true}/>
       <Route path="/write" component={ArticleInput} exact={true}/>
       <Route path="/articles/:slug" component={ReadArticle}/>
+      <Route path="/sample-article" component={SampleArticle} exact={true}/>
     </>
   );
 };
