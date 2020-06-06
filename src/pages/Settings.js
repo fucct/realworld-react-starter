@@ -1,10 +1,10 @@
 import React from "react";
 import SettingsForm from '../components/SettingsForm';
-import validateAccess from '../components/Utils';
+import { validateAccess } from '../components/Utils';
 
 
 const Settings = props => {
-  validateAccess(props);
+  validateAccess(props.history);
   return (
     <div className="settings-page">
       <div className="container page">
