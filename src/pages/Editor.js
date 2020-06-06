@@ -29,9 +29,9 @@ const Editor = ({ onChange, onClick, onKeyPress, tags, error }) => (
                 <input type="text" className="form-control" placeholder="Enter tags(optional)"
                        name="tagList"
                        onChange={onChange} onKeyPress={onKeyPress}/>
-                <div className="tag-list">
+                <ul className="tag-list">
                   {Array.from(tags).map((tag, index) => TagTemplate(tag, index))}
-                </div>
+                </ul>
               </fieldset>
               <button className="btn btn-lg pull-xs-right btn-primary" type="button"
                       onClick={onClick}>

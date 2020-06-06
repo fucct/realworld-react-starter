@@ -1,7 +1,7 @@
 import React from 'react';
 import ArticleTemplate from '../components/ArticleTemplate';
 
-const Home = ({ articles }) => {
+const Home = ({ articles, onClick }) => {
   if (articles) {
     return (
       <div className="home-page">
@@ -24,7 +24,7 @@ const Home = ({ articles }) => {
                   </li>
                 </ul>
               </div>
-              {articles.map((article, index) => ArticleTemplate(article, index))}
+              {articles.map((article, index) => ArticleTemplate(article, index, onClick))}
               <div className="col-md-3">
                 <div className="sidebar">
                   <p>Popular Tags</p>

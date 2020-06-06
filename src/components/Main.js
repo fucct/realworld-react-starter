@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
-import ShowHome from './ShowHome';
 import Footer from './Footer';
+import ShowHome from './ShowHome';
 
 function Main(props) {
   const [token, setToken] = useState(null);

@@ -2,7 +2,7 @@ import React from 'react';
 
 const ArticleTemplate = (tag, index) => {
   return (
-    <div className="tag-pill tag-default" key={index}>{tag}</div>
+    <li className="tag-pill tag-default" key={index}>{tag}</li>
   );
 }
 

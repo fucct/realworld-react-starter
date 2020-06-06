@@ -26,9 +26,13 @@ function ShowProfile({ match }) {
     })
   }, [])
 
-  return (
-    <Profile username={username} bio={bio} image={image} following={following}/>
-  );
+  if (username) {
+    return (
+      <Profile username={username} bio={bio} image={image} following={following}/>
+    );
+  } else {
+    return false;
+  }
 }
 
 export default ShowProfile;
