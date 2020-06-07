@@ -1,8 +1,7 @@
 import React, { useReducer, useState } from 'react';
-import SignUpForm from './SignUpForm';
 import ErrorMessages from './ErrorMessages';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { api } from './utils/Utils';
 
 
 function reducer(state, action) {
@@ -14,9 +13,9 @@ function reducer(state, action) {
 
 const SignUp = (props) => {
   const [user, dispatch] = useReducer(reducer, {
-    username: "",
-    email: "",
-    password: "",
+    username: null,
+    email: null,
+    password: null,
   });
 
   const { username, email, password } = user;
@@ -26,17 +25,18 @@ const SignUp = (props) => {
   };
 
   const [error, setError] = useState({
-      email: undefined,
-      username: undefined,
-      password: undefined,
+      email: null,
+      username: null,
+      password: null,
     }
   );
 
   const onClick = e => {
-    e.preventDefault();
-    axios.post("https://conduit.productionready.io/api/users", { user: user })
-    .then(() => props.history.push("/"))
-    .catch(error => {
+    try {
+      e.preventDefault();
+      api.signUp({ user: user }, props.history);
+    }
+    catch (error) {
       if (error.response) {
         const errorList = error.response.data.errors;
         const errors = {
@@ -46,9 +46,8 @@ const SignUp = (props) => {
         };
         setError(errors);
       }
-    })
-  }
-
+    }
+  };
 
   return (
     <div className="auth-page">
@@ -60,8 +59,25 @@ const SignUp = (props) => {
               <Link to="/sign-in">Have an account?</Link>
             </p>
             <ErrorMessages error={error}/>
-            <SignUpForm username={username} email={email} password={password} onChange={onChange}
-                        onClick={onClick}/>
+            <form>
+              <fieldset className="form-group">
+                <input className="form-control form-control-lg" type="text" name="username"
+                       placeholder="Your Name"
+                       onChange={onChange} value={username}/>
+              </fieldset>
+              <fieldset className="form-group">
+                <input className="form-control form-control-lg" type="text" name="email"
+                       placeholder="Email"
+                       onChange={onChange} value={email}/>
+              </fieldset>
+              <fieldset className="form-group">
+                <input className="form-control form-control-lg" type="password" name="password"
+                       placeholder="Password" onChange={onChange} value={password}/>
+              </fieldset>
+              <button className="btn btn-lg btn-primary pull-xs-right" onClick={onClick}>
+                Sign up
+              </button>
+            </form>
           </div>
         </div>
       </div>

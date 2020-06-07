@@ -1,5 +1,5 @@
 import React from 'react';
-import ErrorMessageTemplate from './ErrorMessageTemplate';
+import Templates from './Templates';
 
 
 function ErrorMessages({ error }) {
@@ -7,7 +7,7 @@ function ErrorMessages({ error }) {
     return Object.entries(error)
     .map(([key, value], index) => {
       if (value) {
-        return ErrorMessageTemplate(index, key, [value])
+        return Templates.ErrorMessageTemplate(index, key, [value])
       }
       return false;
     });

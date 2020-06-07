@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 import SignIn from './components/SignIn';
 import SignOut from './components/SignOut';
 import Settings from './pages/Settings';
@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import SignUp from './components/SignUp';
 
 const App = () => {
+  const history = useHistory();
   const [token, setToken] = useState(null);
 
   useEffect(() => {
@@ -34,12 +35,12 @@ const App = () => {
     <>
       <Header token={token}/>
       <Route path="/" exact={true}><Home token={token}/></Route>
-      <Route path="/sign-up" exact={true}><SignUp/></Route>
-      <Route path="/sign-in" exact={true}><SignIn/></Route>
-      <Route path="/sign-out" exact={true}><SignOut token={token}/></Route>
+      <Route path="/sign-up" exact={true}><SignUp history={history}/></Route>
+      <Route path="/sign-in" exact={true}><SignIn history={history}/></Route>
+      <Route path="/sign-out" exact={true}><SignOut token={token} history={history}/></Route>
       <Route path="/profiles/:username"><ShowProfile/></Route>
-      <Route path="/settings" exact={true}><Settings token={token}/></Route>
-      <Route path="/write" exact={true}><Editor token={token}/></Route>
+      <Route path="/settings" exact={true}><Settings token={token} history={history}/></Route>
+      <Route path="/write" exact={true}><Editor token={token} history={history}/></Route>
       <Route path="/articles/:slug" component={ReadArticle}/>
       <Footer/>
     </>

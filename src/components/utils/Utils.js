@@ -20,6 +20,18 @@ export const errorHandling = (error, history) => {
 export const AuthorizationHeader = token => ({ headers: { "Authorization": "Token " + token } });
 
 export const api = {
+  signUp: async (data, history) => {
+    const response = await axios.post("https://conduit.productionready.io/api/users", data);
+    alert("안녕하세요, " + response.data.user.username);
+    history.push("/");
+  },
+
+  signIn: async (data, history) => {
+    const response = await axios.post("https://conduit.productionready.io/api/users/login", data);
+    localStorage.setItem("token", response.data.user.token);
+    history.push("/");
+  },
+
   write: async (article, token, history) => {
     const response = await axios.post(`${apiUrl}/articles`,
       article,

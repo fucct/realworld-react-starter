@@ -31,11 +31,18 @@ export const Templates = {
       </div>
     );
   },
+
   TagTemplate: (tag, index) => {
     return (
       <li className="tag-pill tag-default" key={index}>{tag}</li>
     );
   },
+
+  ErrorMessageTemplate: (index, key, message) => {
+    return (
+      <li key={index}>That {key} {message}</li>
+    );
+  }
 }
 
 export default Templates;

@@ -10,6 +10,7 @@ function Home({ token }) {
 
   useEffect(() => {
     const config = token ? { headers: { Authorization: "Token " + localStorage.getItem("token") } } : null;
+    console.log(config);
     axios.get("https://conduit.productionready.io/api/articles", config)
     .then(response => {
       setArticles(response.data.articles);
