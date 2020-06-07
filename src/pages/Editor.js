@@ -2,7 +2,6 @@ import React, { useReducer, useState } from 'react';
 import { api, validateAccess } from '../components/utils/Utils';
 import ErrorMessages from '../components/ErrorMessages';
 import { KEY_TYPE } from '../components/utils/Constants';
-import { useHistory } from 'react-router-dom';
 import { Templates } from '../components/utils/Templates';
 
 function reducer(state, action) {
@@ -12,9 +11,8 @@ function reducer(state, action) {
   };
 }
 
-function Editor(props) {
-  const history = useHistory();
-  validateAccess(history);
+function Editor({ token, history }) {
+  validateAccess(token, history);
 
   const [article, dispatch] = useReducer(reducer, {
     title: null,

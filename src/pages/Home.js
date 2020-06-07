@@ -4,7 +4,6 @@ import { Templates } from '../components/utils/Templates';
 
 function Home({ token, history }) {
   const [articles, setArticles] = useState();
-
   useEffect(() => {
     try {
       api.getArticles(token, setArticles);
@@ -12,10 +11,10 @@ function Home({ token, history }) {
     catch (error) {
       errorHandling(error, history);
     }
-  }, []);
+  }, [token]);
 
   const onClick = (e, favorited, index, slug) => {
-    validateAccess(history);
+    validateAccess(token, history);
     const action = favorited ? api.unFavorite : api.favorite;
     try {
       action(token, articles, setArticles, index, slug);

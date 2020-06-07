@@ -11,7 +11,7 @@ function reducer(state, action) {
   };
 }
 
-const SignUp = (props) => {
+const SignUp = ({ history }) => {
   const [user, dispatch] = useReducer(reducer, {
     username: null,
     email: null,
@@ -34,7 +34,7 @@ const SignUp = (props) => {
   const onClick = e => {
     try {
       e.preventDefault();
-      api.signUp({ user: user }, props.history);
+      api.signUp({ user: user }, history);
     }
     catch (error) {
       if (error.response) {

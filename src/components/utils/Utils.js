@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { apiUrl } from './Constants';
 
-export const validateAccess = history => {
-  const token = localStorage.getItem("token");
+export const validateAccess = (token, history) => {
   if (!token) {
     alert("로그인 후 이용해주세요.");
     history.replace("/sign-in")
@@ -26,9 +25,11 @@ export const api = {
     history.push("/");
   },
 
-  signIn: async (data, history) => {
+  signIn: async (data, history, setToken) => {
     const response = await axios.post("https://conduit.productionready.io/api/users/login", data);
-    localStorage.setItem("token", response.data.user.token);
+    const token = response.data.user.token;
+    localStorage.setItem("token", token);
+    setToken(token);
     history.push("/");
   },
 

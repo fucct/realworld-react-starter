@@ -26,25 +26,12 @@ const App = () => {
     history.push("/");
   };
 
-
-  // 참고: https://github.com/gothinkster/realworld/tree/master/api
-  (async () => {
-    const response = await fetch("https://conduit.productionready.io/api/articles", {
-      method: "GET",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-    });
-    const content = await response.json();
-  })();
-
   return (
     <>
       <Header token={token} logOut={logOut}/>
-      <Route path="/" exact={true}><Home token={token}/></Route>
+      <Route path="/" exact={true}><Home token={token} history={history}/></Route>
       <Route path="/sign-up" exact={true}><SignUp history={history}/></Route>
-      <Route path="/sign-in" exact={true}><SignIn history={history}/></Route>
+      <Route path="/sign-in" exact={true}><SignIn history={history} setToken={setToken}/></Route>
       <Route path="/profiles/:username"><ShowProfile/></Route>
       <Route path="/settings" exact={true}><Settings token={token} history={history}/></Route>
       <Route path="/write" exact={true}><Editor token={token} history={history}/></Route>
