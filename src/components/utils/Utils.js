@@ -39,6 +39,13 @@ export const api = {
     setArticles(response.data.articles);
   },
 
+  getArticlesByUser: async (token, username, setArticles) => {
+    const config = token ? AuthorizationHeader(token) : null;
+    const response = await axios(`https://conduit.productionready.io/api/articles?author=${username}`,
+      config);
+    setArticles(response.data.articles);
+  },
+
   getArticle: async (slug, setArticle) => {
     const response = await axios.get("https://conduit.productionready.io/api/articles/" + slug);
     setArticle(response.data.article);
@@ -68,4 +75,10 @@ export const api = {
     articleList[index] = response.data.article;
     setArticles(articleList);
   },
+
+  getProfile: async (token, username, setUser) => {
+    const response = await axios.get("https://conduit.productionready.io/api/profiles/" + username,
+      AuthorizationHeader(token));
+    setUser(response.data.profile);
+  }
 };

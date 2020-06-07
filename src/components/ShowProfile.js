@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { api } from './utils/Utils';
 import Profile from '../pages/Profile';
 
-function ShowProfile({ match }) {
+function ShowProfile({ match, history, token }) {
+  const [articles, setArticles] = useState();
   const [user, setUser] = useState({
     username: null,
     bio: null,
@@ -13,26 +14,21 @@ function ShowProfile({ match }) {
   const { username, bio, image, following } = user;
 
   useEffect(() => {
-    axios.get("https://conduit.productionready.io/api/profiles/" + match.params.username, {
-      headers: {
-        Authorization: "Token " + localStorage.getItem("token")
-      }
-    }).then(response => {
-      setUser(response.data.profile);
-    }).catch(error => {
+    try {
+      api.getProfile(token, match.params.username, setUser);
+    }
+    catch (error) {
       if (error.response) {
+        alert("에러가 발생했습니다..");
         console.log(error.response.data);
       }
-    })
+    }
   }, [])
 
-  if (username) {
-    return (
-      <Profile username={username} bio={bio} image={image} following={following}/>
-    );
-  } else {
-    return false;
-  }
+  return username ? (
+    <Profile token={token} history={history} username={username} image={image} bio={bio}
+             following={following}/>
+  ) : null;
 }
 
 export default ShowProfile;
