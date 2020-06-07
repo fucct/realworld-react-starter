@@ -32,6 +32,17 @@ export const api = {
     history.push("/");
   },
 
+  getArticles: async (token, setArticles) => {
+    const config = token ? AuthorizationHeader(token) : null;
+    const response = await axios("https://conduit.productionready.io/api/articles", config);
+    setArticles(response.data.articles);
+  },
+
+  getArticle: async (slug, setArticle) => {
+    const response = await axios.get("https://conduit.productionready.io/api/articles/" + slug);
+    setArticle(response.data.article);
+  },
+
   write: async (article, token, history) => {
     const response = await axios.post(`${apiUrl}/articles`,
       article,

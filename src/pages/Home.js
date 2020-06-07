@@ -1,55 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
-import { api, AuthorizationHeader, errorHandling, validateAccess } from '../components/utils/Utils';
-import { Templates } from '../components/Templates';
+import { api, errorHandling, validateAccess } from '../components/utils/Utils';
+import { Templates } from '../components/utils/Templates';
 
-function Home({ token }) {
+function Home({ token, history }) {
   const [articles, setArticles] = useState();
-  const history = useHistory();
 
   useEffect(() => {
-    const config = token ? { headers: { Authorization: "Token " + localStorage.getItem("token") } } : null;
-    console.log(config);
-    axios.get("https://conduit.productionready.io/api/articles", config)
-    .then(response => {
-      setArticles(response.data.articles);
-    })
-    .catch(error => {
+    try {
+      api.getArticles(token, setArticles);
+    }
+    catch (error) {
       errorHandling(error, history);
-    });
+    }
   }, []);
 
   const onClick = (e, favorited, index, slug) => {
     validateAccess(history);
-    const action = favorited ? api.unFavorite(token,
-      articles,
-      setArticles,
-      index,
-      slug) : api.favorite(token, articles, setArticles, index, slug)
-    if (!favorited) {
-      axios.post(`https://conduit.productionready.io/api/articles/${slug}/favorite`,
-        null,
-        AuthorizationHeader(token))
-      .then(response => {
-        const articleList = [...articles];
-        articleList[index] = response.data.article;
-        setArticles(articleList);
-      })
-      .catch(error => {
-        errorHandling(error, history);
-      });
-    } else {
-      axios.delete(`https://conduit.productionready.io/api/articles/${slug}/favorite`,
-        { headers: { "Authorization": "Token " + token } })
-      .then(response => {
-        const articleList = [...articles];
-        articleList[index] = response.data.article;
-        setArticles(articleList);
-      })
-      .catch(error => {
-        errorHandling(error, history)
-      });
+    const action = favorited ? api.unFavorite : api.favorite;
+    try {
+      action(token, articles, setArticles, index, slug);
+    }
+    catch (error) {
+      errorHandling(error, history);
     }
   }
 

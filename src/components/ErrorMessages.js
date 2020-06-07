@@ -1,5 +1,5 @@
 import React from 'react';
-import Templates from './Templates';
+import Templates from './utils/Templates';
 
 
 function ErrorMessages({ error }) {

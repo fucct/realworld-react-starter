@@ -13,8 +13,8 @@ function reducer(state, action) {
 
 const SignIn = (props) => {
   const [user, dispatch] = useReducer(reducer, {
-    email: "",
-    password: "",
+    email: null,
+    password: null,
   });
 
   const { email, password } = user;
@@ -24,8 +24,8 @@ const SignIn = (props) => {
   };
 
   const [error, setError] = useState({
-      email: undefined,
-      password: undefined,
+      email: null,
+      password: null,
     }
   );
 

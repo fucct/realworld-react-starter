@@ -4,7 +4,7 @@ import SignButton from './SignButton';
 import SettingButton from './SettingButton';
 import WriteButton from './WriteButton';
 
-const Header = ({ token }) => {
+const Header = ({ token, logOut }) => {
   return (
     <nav className="navbar navbar-light">
       <div className="container">
@@ -15,7 +15,7 @@ const Header = ({ token }) => {
           </li>
           <WriteButton token={token}/>
           <SettingButton token={token}/>
-          <SignButton token={token}/>
+          <SignButton token={token} logOut={logOut}/>
         </ul>
       </div>
     </nav>

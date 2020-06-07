@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Route, useHistory } from 'react-router-dom';
 import SignIn from './components/SignIn';
-import SignOut from './components/SignOut';
 import Settings from './pages/Settings';
 import ShowProfile from './components/ShowProfile';
 import Editor from './pages/Editor';
-import ReadArticle from './components/ReadArticle';
+import Article from './pages/Article';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -18,6 +17,15 @@ const App = () => {
   useEffect(() => {
     setToken(localStorage.getItem("token"));
   }, []);
+
+  const logOut = e => {
+    e.preventDefault();
+    localStorage.clear();
+    setToken(null);
+    alert("정상적으로 로그아웃 되었습니다.");
+    history.push("/");
+  };
+
 
   // 참고: https://github.com/gothinkster/realworld/tree/master/api
   (async () => {
@@ -33,15 +41,14 @@ const App = () => {
 
   return (
     <>
-      <Header token={token}/>
+      <Header token={token} logOut={logOut}/>
       <Route path="/" exact={true}><Home token={token}/></Route>
       <Route path="/sign-up" exact={true}><SignUp history={history}/></Route>
       <Route path="/sign-in" exact={true}><SignIn history={history}/></Route>
-      <Route path="/sign-out" exact={true}><SignOut token={token} history={history}/></Route>
       <Route path="/profiles/:username"><ShowProfile/></Route>
       <Route path="/settings" exact={true}><Settings token={token} history={history}/></Route>
       <Route path="/write" exact={true}><Editor token={token} history={history}/></Route>
-      <Route path="/articles/:slug" component={ReadArticle}/>
+      <Route path="/articles/:slug" component={Article}/>
       <Footer/>
     </>
   );

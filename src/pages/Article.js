@@ -1,11 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import { api } from '../components/utils/Utils';
 import { Link } from 'react-router-dom';
 
-const Article = ({ article }) => {
-  const { title, description, body, tagList, createdAt, updatedAt, favorited, favoritesCount, author } = article;
-  const { username, bio, image, following } = author;
+function Article({ match }) {
+  const slug = match.params.slug;
+  const [article, setArticle] = useState({
+    title: null,
+    description: null,
+    body: null,
+    tagList: null,
+    createdAt: null,
+    updatedAt: null,
+    favorited: null,
+    favoritesCount: null,
+    author: {
+      username: null,
+      bio: null,
+      image: null,
+      following: null,
+    },
+  });
+  let { title, description, body, tagList, createdAt, updatedAt, favorited, favoritesCount, author } = article;
+  let { username, bio, image, following } = author;
 
-  return (
+  useEffect(() => {
+    try {
+      api.getArticle(slug, setArticle);
+    }
+    catch (error) {
+      if (error.response) {
+        alert(error.response.data);
+      }
+    }
+  }, []);
+
+  return article ? (
     <div className="article-page">
       <div className="banner">
         <div className="container">
@@ -103,8 +132,8 @@ const Article = ({ article }) => {
                 <a href="" className="comment-author">Jacob Schmidt</a>
                 <span className="date-posted">Dec 29th</span>
                 <span className="mod-options">
-              <i className="ion-edit"></i>
-              <i className="ion-trash-a"></i>
+              <i className="ion-edit"/>
+              <i className="ion-trash-a"/>
             </span>
               </div>
             </div>
@@ -112,7 +141,7 @@ const Article = ({ article }) => {
         </div>
       </div>
     </div>
-  );
+  ) : null;
 }
 
 export default Article;

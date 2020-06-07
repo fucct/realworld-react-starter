@@ -1,14 +1,14 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-function SignButton({ token }) {
+function SignButton({ token, logOut }) {
   return token ? (
     <li className="nav-item">
-      <NavLink className="nav-link" to="/sign-out">Sign out</NavLink>
+      <NavLink className="nav-link" onClick={logOut} to="/">Log out</NavLink>
     </li>
   ) : (
     <li className="nav-item">
-      <Link className="nav-link" to="/sign-up">Sign up</Link>
+      <NavLink className="nav-link" to="/sign-up">Sign up</NavLink>
     </li>
   );
 }

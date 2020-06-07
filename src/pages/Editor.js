@@ -3,7 +3,7 @@ import { api, validateAccess } from '../components/utils/Utils';
 import ErrorMessages from '../components/ErrorMessages';
 import { KEY_TYPE } from '../components/utils/Constants';
 import { useHistory } from 'react-router-dom';
-import { Templates } from '../components/Templates';
+import { Templates } from '../components/utils/Templates';
 
 function reducer(state, action) {
   return {
