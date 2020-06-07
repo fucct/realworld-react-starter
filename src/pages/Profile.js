@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import ArticleTemplate from '../components/ArticleTemplate';
+import ArticleTemplate from '../components/Templates';
 
 const Profile = ({ username, bio, image, following }) => {
   const [articles, setArticles] = useState();

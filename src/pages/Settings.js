@@ -1,6 +1,6 @@
 import React from "react";
 import SettingsForm from '../components/SettingsForm';
-import { validateAccess } from '../components/Utils';
+import { validateAccess } from '../components/utils/Utils';
 
 
 const Settings = props => {

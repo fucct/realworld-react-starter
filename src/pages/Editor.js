@@ -1,9 +1,9 @@
 import React, { useReducer, useState } from 'react';
-import { api, validateAccess } from '../components/Utils';
+import { api, validateAccess } from '../components/utils/Utils';
 import ErrorMessages from '../components/ErrorMessages';
-import TagTemplate from '../components/TagTemplate';
-import { KEY_TYPE } from '../components/Constants';
+import { KEY_TYPE } from '../components/utils/Constants';
 import { useHistory } from 'react-router-dom';
+import { Templates } from '../components/Templates';
 
 function reducer(state, action) {
   return {
@@ -102,7 +102,7 @@ function Editor(props) {
                          name="tagList"
                          onChange={onChange} onKeyPress={onKeyPress}/>
                   <ul className="tag-list">
-                    {Array.from(tags).map((tag, index) => TagTemplate(tag, index))}
+                    {Array.from(tags).map((tag, index) => Templates.TagTemplate(tag, index))}
                   </ul>
                 </fieldset>
                 <button className="btn btn-lg pull-xs-right btn-primary" type="button"

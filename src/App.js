@@ -8,7 +8,7 @@ import Editor from './pages/Editor';
 import ReadArticle from './components/ReadArticle';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import ShowHome from './components/ShowHome';
+import Home from './pages/Home';
 import SignUp from './components/SignUp';
 
 const App = () => {
@@ -33,7 +33,7 @@ const App = () => {
   return (
     <>
       <Header token={token}/>
-      <Route path="/" exact={true}><ShowHome token={token}/></Route>
+      <Route path="/" exact={true}><Home token={token}/></Route>
       <Route path="/sign-up" exact={true}><SignUp/></Route>
       <Route path="/sign-in" exact={true}><SignIn/></Route>
       <Route path="/sign-out" exact={true}><SignOut token={token}/></Route>
