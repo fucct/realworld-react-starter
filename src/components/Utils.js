@@ -1,3 +1,6 @@
+import axios from 'axios';
+import { apiUrl } from './Constants';
+
 export const validateAccess = history => {
   const token = localStorage.getItem("token");
   if (!token) {
@@ -12,4 +15,33 @@ export const errorHandling = (error, history) => {
     console.log(error.response);
     history.replace("/");
   }
-}
+};
+
+export const AuthorizationHeader = token => ({ headers: { "Authorization": "Token " + token } });
+
+export const api = {
+  write: async (article, token, history) => {
+    const response = await axios.post(`${apiUrl}/articles`,
+      article,
+      AuthorizationHeader(token));
+    alert("성공적으로 등록되었습니다.");
+    history.push(`/articles/${response.data.article.slug}`);
+  },
+
+  favorite: async (token, articles, setArticles, index, slug) => {
+    const response = await axios.post(`${apiUrl}/articles/${slug}/favorite`,
+      null,
+      AuthorizationHeader(token));
+    const articleList = [...articles];
+    articleList[index] = response.data.article;
+    setArticles(articleList);
+  },
+
+  unFavorite: async (token, articles, setArticles, index, slug) => {
+    const response = await axios.delete(`${apiUrl}/articles/${slug}/favorite`,
+      AuthorizationHeader(token));
+    const articleList = [...articles];
+    articleList[index] = response.data.article;
+    setArticles(articleList);
+  },
+};

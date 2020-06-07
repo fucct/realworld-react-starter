@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route } from 'react-router-dom';
-import Main from './components/Main';
-import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import SignOut from './components/SignOut';
 import Settings from './pages/Settings';
 import ShowProfile from './components/ShowProfile';
-import ArticleInput from './components/ArticleInput';
+import Editor from './pages/Editor';
 import ReadArticle from './components/ReadArticle';
-import SampleArticle from './pages/SampleArticle';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import ShowHome from './components/ShowHome';
+import SignUp from './components/SignUp';
 
 const App = () => {
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+  }, []);
 
   // 참고: https://github.com/gothinkster/realworld/tree/master/api
   (async () => {
@@ -26,15 +32,16 @@ const App = () => {
 
   return (
     <>
-      <Route path="/" component={Main} exact={true}/>
-      <Route path="/sign-up" component={SignUp} exact={true}/>
-      <Route path="/sign-in" component={SignIn} exact={true}/>
-      <Route path="/sign-out" component={SignOut} exact={true}/>
-      <Route path="/profiles/:username" component={ShowProfile}/>
-      <Route path="/settings" component={Settings} exact={true}/>
-      <Route path="/write" component={ArticleInput} exact={true}/>
+      <Header token={token}/>
+      <Route path="/" exact={true}><ShowHome token={token}/></Route>
+      <Route path="/sign-up" exact={true}><SignUp/></Route>
+      <Route path="/sign-in" exact={true}><SignIn/></Route>
+      <Route path="/sign-out" exact={true}><SignOut token={token}/></Route>
+      <Route path="/profiles/:username"><ShowProfile/></Route>
+      <Route path="/settings" exact={true}><Settings token={token}/></Route>
+      <Route path="/write" exact={true}><Editor token={token}/></Route>
       <Route path="/articles/:slug" component={ReadArticle}/>
-      <Route path="/sample-article" component={SampleArticle} exact={true}/>
+      <Footer/>
     </>
   );
 };

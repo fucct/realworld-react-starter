@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 import SignButton from './SignButton';
+import SettingButton from './SettingButton';
+import WriteButton from './WriteButton';
 
 const Header = ({ token }) => {
   return (
@@ -11,16 +13,8 @@ const Header = ({ token }) => {
           <li className="nav-item">
             <NavLink className="nav-link active" to="/">Home</NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to={{ pathname: '/write', state: { token: token } }}>
-              <i className="ion-compose"/>&nbsp;New Post
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to={{ pathname: '/settings', state: { token: token } }}>
-              <i className="ion-gear-a"/>&nbsp;Settings
-            </NavLink>
-          </li>
+          <WriteButton token={token}/>
+          <SettingButton token={token}/>
           <SignButton token={token}/>
         </ul>
       </div>
